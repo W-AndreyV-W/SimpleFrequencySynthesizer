@@ -1,6 +1,6 @@
 #include "frequencysynthesizer.h"
 
-FrequencySynthesizer::FrequencySynthesizer(std::deque<int16_t>* soundClick) : QObject{} {
+FrequencySynthesizer::FrequencySynthesizer(std::deque<uint16_t> *soundClick) : QObject{} {
 
     _soundClick = soundClick;
 }
@@ -11,6 +11,7 @@ void FrequencySynthesizer::setDate(std::vector<int> frequencySound, int discreti
 
     numberFrequencies = 0;
     frequency.clear();
+    audioDelay.clear();
     for (int i = 0; i < frequencySound.size(); i++){
 
         if (frequencySound[i] >= 40 && frequencySound[i] <= 16000){
@@ -41,7 +42,8 @@ void FrequencySynthesizer::totalHarmonic(float& harmonic, float timeDiscret){
 
 void FrequencySynthesizer::harmonicFilter(float &harmonic) {
 
-    harmonic += *_soundClick->end() * gainFactor;
+    harmonic += audioDelay.front() * gainFactor;
+    audioDelay.pop_front();
     harmonic /= 2;
 }
 
@@ -53,7 +55,11 @@ void FrequencySynthesizer::soundBig(){
         float harmonic = 0;
 
         totalHarmonic(harmonic, timeDiscret);
-        harmonicFilter(harmonic);
-        _soundClick->emplace_back(static_cast<int16_t>(harmonic));
+        if (timeDiscret > discretLine * discretTime){
+
+            harmonicFilter(harmonic);
+        }
+        audioDelay.push_back(harmonic);
+        _soundClick->emplace_back(static_cast<uint16_t>(harmonic + bitDepth));
     }
 }

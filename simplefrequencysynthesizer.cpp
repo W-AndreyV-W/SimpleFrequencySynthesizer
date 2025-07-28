@@ -6,7 +6,7 @@ SimpleFrequencySynthesizer::SimpleFrequencySynthesizer(QWidget *parent) :
     ui(new Ui::SimpleFrequencySynthesizer)
 {
     ui->setupUi(this);
-    soundClick = new std::deque<int16_t>(6);
+    soundClick = new std::deque<uint16_t>(6);
 
     frequencySynthesizer = new FrequencySynthesizer(soundClick);
     savingToFile = new SavingToFile(soundClick);

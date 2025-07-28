@@ -1,6 +1,6 @@
 #include "savingtofile.h"
 
-SavingToFile::SavingToFile(std::deque<int16_t>* soundOut) : QObject() {
+SavingToFile::SavingToFile(std::deque<uint16_t>* soundOut) : QObject() {
 
     _soundOut = soundOut;
 }

@@ -13,14 +13,14 @@ class SavingToFile : public QObject {
 
 public:
 
-    SavingToFile(std::deque<int16_t>* soundOut);
+    SavingToFile(std::deque<uint16_t> *soundOut);
     ~SavingToFile();
 
     void fileSave(std::string nameFile);
 
 private:
 
-    std::deque<int16_t>* _soundOut;
+    std::deque<uint16_t>* _soundOut;
 };
 
 #endif // SAVINGTOFILE_H

@@ -32,7 +32,7 @@ private:
     FrequencySynthesizer* frequencySynthesizer;
     SavingToFile* savingToFile;
 
-    std::deque<int16_t>* soundClick;
+    std::deque<uint16_t>* soundClick;
 };
 
 #endif // SIMPLEFREQUENCYSYNTHESIZER_H
