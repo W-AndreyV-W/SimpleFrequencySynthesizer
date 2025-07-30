@@ -34,7 +34,7 @@ private:
 
     float harmonicVibration(int num, float timeDiscret);
     void totalHarmonic(float& harmonic, float timeDiscret);
-    void harmonicFilter(float& harmonic);
+    void harmonicFilter(float& harmonic, float timeDiscret);
     void soundBig();
 };
 

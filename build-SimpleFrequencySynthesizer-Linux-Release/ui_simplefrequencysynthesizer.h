@@ -226,7 +226,7 @@ public:
         label_9->setText(QApplication::translate("SimpleFrequencySynthesizer", "\320\230\320\274\321\217 \321\204\320\260\320\271\320\273\320\260 \320\264\320\273\321\217 \320\267\320\260\320\277\320\270\321\201\320\270", Q_NULLPTR));
         lineEdit->setText(QString());
         pushButton->setText(QApplication::translate("SimpleFrequencySynthesizer", "\320\222\321\213\321\205\320\276\320\264", Q_NULLPTR));
-        pushButton_2->setText(QApplication::translate("SimpleFrequencySynthesizer", "\320\241\321\202\320\260\321\200\321\202", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("SimpleFrequencySynthesizer", "\320\241\320\263\320\265\320\275\320\265\321\200\320\270\321\200\320\276\320\262\320\260\321\202\321\214 ", Q_NULLPTR));
     } // retranslateUi
 
 };

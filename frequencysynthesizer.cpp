@@ -40,11 +40,15 @@ void FrequencySynthesizer::totalHarmonic(float& harmonic, float timeDiscret){
     harmonic /= numberFrequencies;
 }
 
-void FrequencySynthesizer::harmonicFilter(float &harmonic) {
+void FrequencySynthesizer::harmonicFilter(float &harmonic, float timeDiscret) {
 
-    harmonic += audioDelay.front() * gainFactor;
-    audioDelay.pop_front();
-    harmonic /= 2;
+    audioDelay.push_back(harmonic);
+    if (timeDiscret > discretLine * discretTime){
+
+        harmonic += audioDelay.front() * gainFactor;
+        audioDelay.pop_front();
+        harmonic /= 2;
+    }
 }
 
 void FrequencySynthesizer::soundBig(){
@@ -53,13 +57,8 @@ void FrequencySynthesizer::soundBig(){
     for (float timeDiscret = 0; timeDiscret <= timePlay; timeDiscret += discretTime){
 
         float harmonic = 0;
-
         totalHarmonic(harmonic, timeDiscret);
-        if (timeDiscret > discretLine * discretTime){
-
-            harmonicFilter(harmonic);
-        }
-        audioDelay.push_back(harmonic);
+        harmonicFilter(harmonic, timeDiscret);
         _soundClick->emplace_back(static_cast<uint16_t>(harmonic + bitDepth));
     }
 }
